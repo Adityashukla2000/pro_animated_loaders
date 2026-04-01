@@ -76,8 +76,6 @@ class LoaderPainterFactory {
         return _HalfTrianglePainter(value, color);
       case LoaderType.dotsTriangle:
         return _DotsTrianglePainter(value, color);
-      default:
-        return _PulsePainter(value, color);
     }
   }
 }

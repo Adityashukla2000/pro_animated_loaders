@@ -1,4 +1,5 @@
-
+## 1.0.4
+* UI Polish: Improved beautifyName logic in the demo app for better presentation of enum types.
 
 ## 1.0.3
 > Massive Animation Expansion 🎨
