@@ -8,16 +8,24 @@
 /// * Modern Grid Layout using Slivers
 /// * Interactive 'Tap to Copy' functionality for developers
 /// * proportional scaling and color inheritance
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// Note: Ensure your local file structure matches this import
 import 'package:pro_animated_loaders/pro_animated_loaders.dart';
 
 void main() {
+  // Sets the status bar to transparent for a truly immersive "Pro" feel
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
   runApp(const ProLoaderExample());
 }
 
-/// Root widget of the example app.
-/// It configures the global theme using [colorSchemeSeed] for a modern look.
 class ProLoaderExample extends StatelessWidget {
   const ProLoaderExample({super.key});
 
@@ -26,19 +34,22 @@ class ProLoaderExample extends StatelessWidget {
     return MaterialApp(
       title: 'Pro Animated Loaders Demo',
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system,
 
-      // Light Theme Configuration
+      // Light Theme: Clean and Modern
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: const Color(0xFF6366F1),
         brightness: Brightness.light,
+        scaffoldBackgroundColor: const Color(0xFFF8FAFC),
       ),
 
-      // Dark Theme Configuration - Premium Look
+      // Dark Theme: Premium Deep Slate
       darkTheme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: const Color(0xFF6366F1),
+        colorSchemeSeed: const Color(0xFF818CF8),
         brightness: Brightness.dark,
+        scaffoldBackgroundColor: const Color(0xFF0F172A),
       ),
 
       home: const ShowcaseScreen(),
@@ -46,116 +57,122 @@ class ProLoaderExample extends StatelessWidget {
   }
 }
 
-/// The primary gallery screen showcasing all available [LoaderType]s.
 class ShowcaseScreen extends StatelessWidget {
   const ShowcaseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Accessing all enum values automatically includes the 20+ new loaders added
+    final allLoaders = LoaderType.values;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Pro Animated Loaders"),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            tooltip: 'About Package',
-            icon: const Icon(Icons.info_outline),
-            onPressed: () => _showAboutDialog(context),
-          ),
-        ],
-      ),
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          // Header Section: Introductory text and branding
+          // Custom App Bar with Silver Effects
+          SliverAppBar.large(
+            title: const Text(
+              "Pro Loaders",
+              style: TextStyle(
+                fontWeight: FontWeight.w900,
+                letterSpacing: -0.5,
+              ),
+            ),
+            centerTitle: true,
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.help_outline_rounded),
+                onPressed: () => _showDocsSnack(context),
+              ),
+            ],
+          ),
+
+          // Statistics Header
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 32.0,
-                horizontal: 24.0,
-              ),
+              padding: const EdgeInsets.all(24.0),
               child: Column(
                 children: [
-                  const Icon(
-                    Icons.auto_awesome,
-                    size: 48,
-                    color: Color(0xFF6366F1),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Text(
+                      "${allLoaders.length} ANIMATIONS LOADED",
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w800,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    "Premium Animations",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
                   Text(
-                    "High-performance CustomPainter loaders for modern Flutter apps.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey.shade600),
+                    "Vector-based. High Performance. 60 FPS.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.color?.withValues(alpha: 0.7),
+                    ),
                   ),
                 ],
               ),
             ),
           ),
 
-          // Loader Grid: Dynamically generates cards for every LoaderType enum value
+          // The Grid
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             sliver: SliverGrid(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: 0.85,
+                mainAxisSpacing: 12,
+                crossAxisSpacing: 12,
+                childAspectRatio: 0.9,
               ),
               delegate: SliverChildBuilderDelegate((context, index) {
-                final type = LoaderType.values[index];
-                final color = _getModernColor(index);
-                return _LoaderCard(type: type, color: color);
-              }, childCount: LoaderType.values.length),
+                final type = allLoaders[index];
+                return _LoaderCard(
+                  type: type,
+                  color: _getPaletteColor(index, context),
+                );
+              }, childCount: allLoaders.length),
             ),
           ),
 
-          const SliverToBoxAdapter(child: SizedBox(height: 40)),
+          const SliverToBoxAdapter(child: SizedBox(height: 50)),
         ],
       ),
     );
   }
 
-  /// Returns a curated palette of modern colors for visual variety in the catalog.
-  Color _getModernColor(int index) {
-    const modernColors = [
-      Color(0xFF6366F1), // Indigo
-      Color(0xFFEC4899), // Pink
-      Color(0xFF8B5CF6), // Violet
-      Color(0xFF10B981), // Emerald
-      Color(0xFFF59E0B), // Amber
-      Color(0xFF3B82F6), // Blue
-      Color(0xFFEF4444), // Red
-      Color(0xFF06B6D4), // Cyan
+  /// Cycles through a professional palette based on the current theme
+  Color _getPaletteColor(int index, BuildContext context) {
+    final colors = [
+      const Color(0xFF6366F1), // Indigo
+      const Color(0xFF06B6D4), // Cyan
+      const Color(0xFF10B981), // Emerald
+      const Color(0xFFF59E0B), // Amber
+      const Color(0xFFEC4899), // Pink
+      const Color(0xFF8B5CF6), // Violet
+      const Color(0xFFF43F5E), // Rose
     ];
-    return modernColors[index % modernColors.length];
+    return colors[index % colors.length];
   }
 
-  /// Displays information about the package design and performance.
-  void _showAboutDialog(BuildContext context) {
-    showAboutDialog(
-      context: context,
-      applicationName: "Pro Animated Loaders",
-      applicationVersion: "1.0.0",
-      applicationIcon: const Icon(Icons.bolt, color: Colors.amber),
-      children: [
-        const Text(
-          "This package provides smooth, vector-based loading animations "
-          "without the weight of Lottie or GIFs. Every loader is built using "
-          "CustomPainter for maximum performance.",
-        ),
-      ],
+  void _showDocsSnack(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Built with Flutter CustomPainter Engine")),
     );
   }
 }
 
-/// A card widget that displays an individual loader and its technical name.
-/// Includes a 'Tap to Copy' feature for better developer experience.
 class _LoaderCard extends StatelessWidget {
   final LoaderType type;
   final Color color;
@@ -166,92 +183,88 @@ class _LoaderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return InkWell(
+    return GestureDetector(
       onTap: () {
-        // Feature: Easily copy the enum value to clipboard for quick implementation
         Clipboard.setData(ClipboardData(text: 'LoaderType.${type.name}'));
+        HapticFeedback.lightImpact();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("Copied LoaderType.${type.name}"),
-            duration: const Duration(seconds: 1),
+            content: Text("Copied: LoaderType.${type.name}"),
             behavior: SnackBarBehavior.floating,
+            width: 250,
+            duration: const Duration(milliseconds: 1500),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
         );
       },
-      borderRadius: BorderRadius.circular(24),
-      child: Card(
-        elevation: 0,
-        margin: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-          side: BorderSide(
+      child: Container(
+        decoration: BoxDecoration(
+          color: isDark ? Colors.white.withValues(alpha: 0.03) : Colors.white,
+          borderRadius: BorderRadius.circular(28),
+          border: Border.all(
             color: isDark
                 ? Colors.white10
                 : Colors.black.withValues(alpha: 0.05),
+            width: 1,
           ),
+          boxShadow: [
+            if (!isDark)
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.03),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+          ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Loader Display Area
-              Expanded(
-                child: Center(
-                  child: ProAnimatedLoader(
-                    type: type,
-                    size: 50,
-                    color: color,
-                    strokeWidth: 4,
+        child: Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: ProAnimatedLoader(
+                  type: type,
+                  size: 45,
+                  color: color,
+                  strokeWidth: 3,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16.0, left: 8, right: 8),
+              child: Column(
+                children: [
+                  Text(
+                    _formatName(type.name),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 16),
-
-              // Formatted Label (e.g., "glowingArc" -> "Glowing Arc")
-              Text(
-                _beautifyName(type.name),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(height: 4),
-
-              // Technical Tag: Displays the exact enum value used in code
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  "type: ${type.name}",
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: 'monospace',
-                    color: color,
-                    fontWeight: FontWeight.bold,
+                  const SizedBox(height: 4),
+                  Text(
+                    "TAP TO COPY",
+                    style: TextStyle(
+                      fontSize: 9,
+                      letterSpacing: 0.5,
+                      fontWeight: FontWeight.w900,
+                      color: color.withValues(alpha: 0.8),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  /// Converts camelCase enum names into readable Title Case labels.
-  String _beautifyName(String name) {
-    final result = name.replaceAllMapped(
+  String _formatName(String camelCase) {
+    final words = camelCase.replaceAllMapped(
       RegExp(r'([A-Z])'),
       (match) => ' ${match.group(0)}',
     );
-    return result[0].toUpperCase() + result.substring(1);
+    return words[0].toUpperCase() + words.substring(1);
   }
 }

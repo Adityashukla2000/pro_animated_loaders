@@ -1,3 +1,23 @@
+
+
+## 1.0.3
+> Massive Animation Expansion 🎨
+> Added 20+ new premium loader types, bringing the total to 30 unique animations.
+
+* New Additions: waveDots, inkDrop, twistingDots, threeRotatingDots, staggeredDotsWave, fourRotatingDots, fallingDot, progressiveDots, discreteCircular, threeArchedCircle, bouncingBall, flickr, hexagonDots, beat, twoRotatingArc, horizontalRotatingDots, newtonCradle, stretchedDots, halfTriangleDot, and dotsTriangle.
+
+* Rendering Engine Upgrades ⚡
+Modern Opacity Handling: Migrated all painters to use withValues(alpha: ...), fully optimized for Flutter’s Impeller rendering engine.
+
+* Advanced Pathing: Improved path-based animations (like halfTriangleDot) using PathMetric for mathematically precise, smooth orbital movements.
+
+* Developer Experience (DX) 🛠️
+* Interactive Example App: Updated the Official Example with a "Tap to Copy" feature and a modern responsive grid for rapid    prototyping.
+
+* Performance Refinement: Optimized _BasePainter logic to ensure zero unnecessary repaints outside the active animation loop.
+
+* UI Polish: Improved beautifyName logic in the demo app for better presentation of enum types.
+
 ## 1.0.2
 
 * 📖 Updated documentation and README with preview support.

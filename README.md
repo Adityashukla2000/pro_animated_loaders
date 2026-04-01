@@ -1,7 +1,18 @@
 # 🚀 Pro Animated Loaders
 
-A **professional suite of high-performance, modular, and beautiful loading animations for Flutter**.
-Built for developers who want **smooth, elegant loading states** without relying on heavy Lottie files or external dependencies.
+A professional suite of **30+ high-performance, modular, and beautiful loading animations** for Flutter.
+
+Built for developers who want **smooth, elegant loading states** without the overhead of Lottie files or GIFs.
+
+---
+
+## ✨ What's New in v1.0.3?
+
+- 🎨 **30+ Unique Styles**  
+  Tripled the library size with 20+ new premium animations.
+
+- ⚡ **Impeller Optimized**  
+  Fully migrated to `withValues(alpha: ...)` for the next-gen Flutter rendering engine.
 
 ---
 
@@ -30,7 +41,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  pro_animated_loaders: ^1.0.2
+  pro_animated_loaders: ^1.0.3
 ```
 
 Then run:
@@ -75,14 +86,57 @@ const ProAnimatedLoader(
 
 ## 🎨 Loader Types
 
-| Loader Name   | Enum Value               |
-| ------------- | ------------------------ |
-| Glowing Arc   | `LoaderType.glowingArc`  |
-| Bouncing Dots | `LoaderType.jumpingDots` |
-| Pulse Ripple  | `LoaderType.pulse`       |
-| Dual Ring     | `LoaderType.dualRing`    |
-| Hour Glass    | `LoaderType.hourGlass`   |
-| Shimmer       | `LoaderType.shimmer`     |
+The package now supports **30+ unique animations**, categorized by their visual motion:
+
+---
+
+### 🌟 Featured & Classic
+
+| Loader Name     | Enum Value              | Description                          |
+|----------------|------------------------|--------------------------------------|
+| Glowing Arc    | `LoaderType.glowingArc` | Modern gradient rotating arc         |
+| Pulse Ripple   | `LoaderType.pulse`      | Concentric fading rings              |
+| Dual Ring      | `LoaderType.dualRing`   | Two rings rotating in opposition     |
+| Shimmer        | `LoaderType.shimmer`    | Smooth sweep gradient effect         |
+| Hour Glass     | `LoaderType.hourGlass`  | Rotating vector path hourglass       |
+
+---
+
+### 🟢 Dots & Waves
+
+| Loader Name        | Enum Value                         |
+|-------------------|-----------------------------------|
+| Jumping Dots      | `LoaderType.jumpingDots`           |
+| Wave Dots         | `LoaderType.waveDots`              |
+| Staggered Wave    | `LoaderType.staggeredDotsWave`     |
+| Twisting Dots     | `LoaderType.twistingDots`          |
+| Stretched Dots    | `LoaderType.stretchedDots`         |
+
+---
+
+### 🚀 Physics & Advanced Motion
+
+| Loader Name      | Enum Value                   |
+|-----------------|-----------------------------|
+| Newton Cradle   | `LoaderType.newtonCradle`   |
+| Bouncing Ball   | `LoaderType.bouncingBall`   |
+| Ink Drop        | `LoaderType.inkDrop`        |
+| Falling Dot     | `LoaderType.fallingDot`     |
+| Flickr Swapper  | `LoaderType.flickr`         |
+| Heartbeat       | `LoaderType.beat`           |
+
+---
+
+### 🔄 Circular & Geometric
+
+| Loader Name        | Enum Value                         |
+|-------------------|-----------------------------------|
+| Chasing Dots      | `LoaderType.chasingDots`           |
+| 3 Rotating Dots   | `LoaderType.threeRotatingDots`     |
+| Discrete Circle   | `LoaderType.discreteCircular`      |
+| Arched Circle     | `LoaderType.threeArchedCircle`     |
+| Hexagon Dots      | `LoaderType.hexagonDots`           |
+| Dots Triangle     | `LoaderType.dotsTriangle`          |
 
 ---
 
