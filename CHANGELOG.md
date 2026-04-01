@@ -1,3 +1,7 @@
+## 1.0.2
+
+* 📖 Updated documentation and README with preview support.
+
 ## 1.0.1
 
 * 🐛 Minor bug fixes and performance improvements.

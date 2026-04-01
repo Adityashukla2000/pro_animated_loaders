@@ -30,7 +30,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  pro_animated_loaders: ^1.0.1
+  pro_animated_loaders: ^1.0.2
 ```
 
 Then run:
@@ -101,10 +101,9 @@ const ProAnimatedLoader(
 
 
 ## 📱 App Preview
-
 <p align="center">
-  <img src="assets/images/loader1.jpeg" width="250"/>
-  <img src="assets/images/loader2.jpeg" width="250"/>
+  <img src="https://raw.githubusercontent.com/Adityashukla2000/pro_animated_loaders/main/assets/images/loader1.jpeg" width="250"/>
+  <img src="https://raw.githubusercontent.com/Adityashukla2000/pro_animated_loaders/main/assets/images/loader2.jpeg" width="250"/>
 </p>
 
 
