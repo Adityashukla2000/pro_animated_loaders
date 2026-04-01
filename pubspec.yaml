@@ -1,7 +1,10 @@
 name: pro_animated_loaders
 description: "A professional suite of high-performance, modular, and beautiful loading animations for Flutter."
 version: 1.0.0
-homepage:
+
+repository: https://github.com/Adityashukla2000/pro_animated_loaders
+issue_tracker: https://github.com/Adityashukla2000/pro_animated_loaders/issues
+homepage: https://github.com/Adityashukla2000/pro_animated_loaders
 
 environment:
   sdk: ^3.11.4
