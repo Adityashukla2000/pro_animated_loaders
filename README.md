@@ -1,49 +1,67 @@
 # 🚀 Pro Animated Loaders
 
-A professional suite of high-performance, beautiful, and modern loading animations for Flutter. 
-Designed to deliver a premium UI experience with zero extra dependencies and minimal effort.
+A **professional suite of high-performance, modular, and beautiful loading animations for Flutter**.
+Built for developers who want **smooth, elegant loading states** without relying on heavy Lottie files or external dependencies.
 
 ---
 
 ## ✨ Features
 
-* 🎨 **10+ Unique Styles**: Pulse, Glowing Arc, Bouncing Dots, Ripple, and more.
-* ⚡ **Performance Optimized**: Uses `RepaintBoundary` and `CustomPainter` for smooth 60fps.
-* 🧩 **Theme Aware**: Automatically inherits your app's `primaryColor` by default.
-* 📱 **Responsive & Production-Ready**: Scales perfectly across Mobile, Web, and Desktop.
-* 🌗 **Dark Mode Support**: Works seamlessly with dark and light themes.
-* 🚀 **Smart Text Rendering**: Only shows label text if a message is provided.
-* 🔥 **Zero Dependencies**: Built purely with Flutter SDK.
+* 🎯 **10+ Unique Styles**
+  Includes pulse ripples, glowing arcs, bouncing dots, dual rings, shimmer loaders, and more.
+
+* 🎨 **Theme Aware**
+  Automatically adapts to your app’s `ColorScheme.primary` if no color is provided.
+
+* ⚡ **Performance Optimized**
+  Built using `RepaintBoundary` and `CustomPainter` to ensure **smooth 60 FPS animations** with minimal rebuilds.
+
+* 🧠 **Smart Layout**
+  Message text is conditionally rendered — **no extra space** when not used.
+
+* 🔧 **Fully Customizable**
+  Control size, colors, stroke width, animation duration, and more.
 
 ---
 
-## 📦 Getting Started
+## 📦 Installation
 
 Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  pro_animated_loaders: ^1.0.0
+  pro_animated_loaders: ^1.0.1
+```
 
+Then run:
 
-Then run: flutter pub get
+```bash
+flutter pub get
+```
 
-🛠 Usage
-🔹 1. Import Package
+---
 
+## 🚀 Quick Start
+
+### 1. Minimal Usage
+
+Automatically inherits your app theme:
+
+```dart
 import 'package:pro_animated_loaders/pro_animated_loaders.dart';
-
-
-🔹 2. Simple Usage (Recommended)
-One-line implementation that follows your app's theme automatically.
 
 const ProAnimatedLoader(
   type: LoaderType.glowingArc,
 )
+```
 
-🔹 3. Fully Customized
-Control size, color, speed, and messaging with ease.
+---
 
+### 2. Custom Styling
+
+Full control over appearance:
+
+```dart
 const ProAnimatedLoader(
   type: LoaderType.jumpingDots,
   color: Colors.indigoAccent,
@@ -51,50 +69,114 @@ const ProAnimatedLoader(
   message: "Syncing Data...",
   duration: Duration(milliseconds: 1200),
 )
+```
 
-🔹 4. Available Loader Types
-Choose from a wide variety of professional styles:
+---
 
-// ✅ Available Types:
-LoaderType.pulse;        // Rippling circle effect
-LoaderType.dots;         // Google style bouncing dots
-LoaderType.spinningRing; // Modern classic ring
-LoaderType.hourGlass;    // Rotating hourglass shape
-LoaderType.shimmer;      // Soft iOS-style glowing ring
-LoaderType.dualRing;     // Two rings rotating in opposite directions
-LoaderType.chasingDots;  // Orbital dots animation
-LoaderType.ripple;       // Multiple concentric ripples
-LoaderType.jumpingDots;  // Horizontal bouncing dots
+## 🎨 Loader Types
 
-🧱 Architecture
-This package follows a clean, modular, and performant structure:
+| Loader Name   | Enum Value               |
+| ------------- | ------------------------ |
+| Glowing Arc   | `LoaderType.glowingArc`  |
+| Bouncing Dots | `LoaderType.jumpingDots` |
+| Pulse Ripple  | `LoaderType.pulse`       |
+| Dual Ring     | `LoaderType.dualRing`    |
+| Hour Glass    | `LoaderType.hourGlass`   |
+| Shimmer       | `LoaderType.shimmer`     |
 
-ProAnimatedLoader → Main widget that handles animation lifecycle and performance.
+---
 
-LoaderType → Enum-based selection for developer-friendly API.
+## 🛠️ Properties
 
-LoaderPainterFactory → Internal engine mapping types to specific CustomPainters.
+| Property      | Type       | Default       | Description                |
+| ------------- | ---------- | ------------- | -------------------------- |
+| `type`        | LoaderType | **Required**  | Animation style            |
+| `color`       | Color?     | Theme Primary | Loader color               |
+| `size`        | double     | 50.0          | Width & height             |
+| `message`     | String?    | null          | Optional text below loader |
+| `strokeWidth` | double     | 4.0           | Thickness for ring loaders |
+| `duration`    | Duration   | 1500ms        | Animation speed            |
 
-BaseLoaderPainter → Optimized abstract class for all geometry drawing logic.
-
-RepaintBoundary → Isolates the animation layer to prevent unnecessary global UI repaints.
-
-🤝 Contributing
-Contributions make the Flutter community amazing!
-If you'd like to improve this package:
-
-1. Fork the repository.
-
-2. Create a new branch (feature/AmazingLoader).
-
-3. Commit your changes.
-
-4. Submit a pull request.
+---
 
 
-🐛 Issues & Feedback
-If you find any bugs or have suggestions for new loader types, feel free to open an issue on GitHub.
+## 📱 App Preview
 
-📄 License
-This project is licensed under the MIT License.
+<p align="center">
+  <img src="assets/images/loader1.jpeg" width="250"/>
+  <img src="assets/images/loader2.jpeg" width="250"/>
+</p>
 
+
+
+
+## 💡 Best Practices
+
+### 🔹 Use in Dialogs (Loading Overlay)
+
+Create a clean and professional loading experience:
+
+```dart
+showDialog(
+  context: context,
+  barrierDismissible: false,
+  builder: (context) => const Center(
+    child: ProAnimatedLoader(
+      type: LoaderType.shimmer,
+      message: "Processing Payment...",
+    ),
+  ),
+);
+```
+
+---
+
+### 🔹 Use with State Management
+
+Perfect for:
+
+* API calls
+* Firebase operations
+* Payment processing
+* File uploads
+
+---
+
+## ⚡ Performance Notes
+
+* Uses **CustomPainter** for efficient rendering
+* Wrapped in **RepaintBoundary** to prevent unnecessary redraws
+* No third-party heavy animation dependencies
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+See the `LICENSE` file for details.
+
+---
+
+## ⭐ Support
+
+If you like this package:
+
+* ⭐ Star the repo
+* 🐛 Report issues
+* 💡 Suggest new loader ideas
+
+---
+
+> Built with ❤️ for Flutter developers who care about performance and design.

@@ -1,3 +1,13 @@
+## 1.0.1
+
+* 🐛 Minor bug fixes and performance improvements.
+* 🎨 Improved animation smoothness across all loader types.
+* 📱 Enhanced responsiveness for different screen sizes.
+* 🧹 Code cleanup and internal optimizations.
+* 📖 Updated documentation and README with preview support.
+
+---
+
 ## 1.0.0
 
 * **Initial Release** 🚀
