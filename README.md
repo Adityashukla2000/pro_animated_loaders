@@ -178,4 +178,4 @@ If you like this package:
 
 ---
 
-> Built with ❤️ for Flutter developers who care about performance and design.
+Built with ❤️ for Flutter developers who care about performance and design.
